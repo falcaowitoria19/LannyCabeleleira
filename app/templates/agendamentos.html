@@ -10,6 +10,7 @@
     <title>Agendamentos</title>
 
     <link rel="stylesheet" href="{% static 'css/agendamentos.css' %}">
+    <script src="{% static 'js/agendamentos.js' %}" defer></script>
 </head>
 
 <body>
@@ -39,54 +40,17 @@
 
             <!-- SERVIÇOS -->
             <section class="servicos">
-
-                <h2>SERVIÇOS</h2>
-
-                <div class="servico">
+                {% for servico in servicos %}
+                <button type="button" class="servico" data-id="{{servico.id}}">
+                    <h2>SERVIÇOS</h2>
                     <div>
-                        <strong>Corte</strong>
-                        <small>45 min</small>
-                    </div>
-
-                    
-                </div>
-
-                <div class="servico">
-                    <div>
-                        <strong>Escova</strong>
-                        <small>60 min</small>
-                    </div>
-
-                    
-                </div>
-
-                <div class="servico">
-                    <div>
-                        <strong>Luzes</strong>
-                        <small>3 h</small>
-                    </div>
-
-                   
-                </div>
-
-                <div class="servico">
-                    <div>
-                        <strong>Hidratação</strong>
-                        <small>90 min</small>
-                    </div>
-
-                   
-                </div>
-
-                <div class="servico">
-                    <div>
-                        <strong>Coloração</strong>
-                        <small>2 h</small>
-                    </div>
-
-                
-                </div>
-
+                    <strong>{{servico.nome}}</strong>
+                    <small>{{servico.duracao}} min</small>
+                   </div>
+               
+                </button>
+                {% endfor %}
+    
 
                 <!-- OBSERVAÇÃO -->
 
@@ -164,49 +128,40 @@
                     </div>
 
 
-                    <div class="dias">
+                <div class="dias">
+                    <button type="button">1</button>
+                    <button type="button">2</button>
+                    <button type="button">3</button>
+                    <button type="button">4</button>
+                    <button type="button">5</button>
+                    <button type="button">6</button>
+                    <button type="button">7</button>
+                    <button type="button">8</button>
+                    <button type="button">9</button>
+                    <button type="button">10</button>
+                    <button type="button">11</button>
+                    <button type="button">12</button>
+                    <button type="button">13</button>
+                    <button type="button">14</button>
+                    <button type="button">15</button>
+                    <button type="button">16</button>
+                    <button type="button">17</button>
+                    <button type="button">18</button>
+                    <button type="button">19</button>
+                    <button type="button">20</button>
+                    <button type="button">21</button>
+                    <button type="button">22</button>
+                    <button type="button">23</button>
+                    <button type="button">24</button>
+                    <button type="button">25</button>
+                    <button type="button">26</button>
+                    <button type="button">27</button>
+                    <button type="button">28</button>
+                    <button type="button">29</button>
+                    <button type="button">30</button>
+                </div>
 
-                        <span class="apagado">30</span>
-                        <span class="apagado">31</span>
-                        <span>1</span>
-                        <span>2</span>
-                        <span>3</span>
-                        <span>4</span>
-                        <span>5</span>
-
-                        <span>6</span>
-                        <span class="selecionado">7</span>
-                        <span>8</span>
-                        <span>9</span>
-                        <span>10</span>
-                        <span>11</span>
-                        <span>12</span>
-
-                        <span>13</span>
-                        <span>14</span>
-                        <span>15</span>
-                        <span>16</span>
-                        <span>17</span>
-                        <span>18</span>
-                        <span>19</span>
-
-                        <span>20</span>
-                        <span>21</span>
-                        <span>22</span>
-                        <span>23</span>
-                        <span>24</span>
-                        <span>25</span>
-                        <span>26</span>
-
-                        <span>27</span>
-                        <span>28</span>
-                        <span>29</span>
-                        <span>30</span>
-                        <span class="apagado">1</span>
-                        <span class="apagado">2</span>
-                        <span class="apagado">3</span>
-
-                    </div>
+                   
 
                 </div>
 

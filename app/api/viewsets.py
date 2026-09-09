@@ -1,6 +1,4 @@
-import requests#nao vou usa pois n vou usa api externa
-from rest_framework import viewsets
-from datetime import time
+from rest_framework import viewsets,status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from ..models import Cliente,Servico,Agendamento

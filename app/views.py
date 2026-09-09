@@ -6,12 +6,14 @@ def inicio(request):
     if request.method =="POST":
         nome=request.POST["nome"]
         telefone=request.POST["telefone"]
-        Cliente.objects.create(nome=nome,telefone=telefone)
+        cliente=Cliente.objects.create(nome=nome,telefone=telefone)
+        request.session['cliente_id']=cliente.id
         return redirect("agendamentos")
     return render(request,'inicio.html')
 def cliente(request):
     return render(request,'app/cliente.html')
 def agendamentos(request):
-    return render(request,'agendamentos.html')
+    servicos=Servico.objects.all()
+    return render(request,'agendamentos.html',{"servicos":servicos})
 def meus_agendamentos(request):
     return render(request,'meus_agendamentos.html')

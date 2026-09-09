@@ -74,6 +74,7 @@ header{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap:40px;
+    align-items: start;
 }
 main h1{
     text-align: center;
@@ -101,12 +102,15 @@ main h1 span{
 }
 .servico{
     width: 100%;
-    
-
+    min-height: 52px;
+    text-align: left;
+    font-family:  Arial, sans-serif;
+    cursor: pointer;
     box-sizing: border-box;
     padding: 12px 16px;
     margin-bottom: 10px;
     background-color: #111111;
+    color: white;
 
     border: 1px solid #3d321b;
     border-radius: 8px;
@@ -123,6 +127,7 @@ main h1 span{
 }
 
 .servico strong {
+    color: white;
     font-size: 16px;
 }
 
@@ -131,40 +136,29 @@ main h1 span{
     font-size: 13px;
 }
 
-.servico > span {
-    color: #c9a33a;
-    font-size: 15px;
+.servico:hover{
+    background-color: #c9a33a;
+    color: #111111;
 }
-.servicos textarea{
-    width: 100%;
-    height: 110px;
 
-    box-sizing: border-box;
-
-    padding: 15px;
-    resize: none;
-
-    background-color: #111111;
-    color: white;
-
-    border: 1px solid #3d321b;
-    border-radius: 10px;
-
-    font-size: 14px;
-    font-family: Arial, sans-serif;
+.servico:hover strong {
+    color: #111111;
 }
-.servicos textarea::placeholder{
-    color: #8f8f8f;
+
+.servico:hover small {
+    color: #3d321b;
 }
+
 .horarios-grid{
     display: grid;
     grid-template-columns:repeat(3, 1fr) ;
     gap: 12px;
 }
 .horarios-grid button{
+    width: 100%;
     height: 52px;
     background-color: #111111;
-    padding: 17px 8px;
+    padding: 0;
 
     color: #e8d9b0;
 
@@ -228,7 +222,8 @@ main h1 span{
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
 }
-.dias span{
+
+.dias button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,17 +232,18 @@ main h1 span{
     border-radius: 50%;
     font-size: 16px;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
 }
-.dias span.selecionado{
-    background-color: #c9a33a;
-    color: #111111;
+
+.dias button.selecionado {
+    background-color: #c9a33a !important;
+    color: #111111 !important;
 }
-.dias span.apagado{
-    color: #444444;
-}
-.dias span:not(.apagado):hover{
+
+.dias button:hover {
     background-color: #3d321b;
-    cursor: pointer;
 }
 .legenda{
     display: flex;
@@ -282,4 +278,42 @@ main h1 span{
 }
 .confirmar:hover{
     background-color: #e8d9b0;
+}
+.servicos textarea {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    background-color: #111111;
+    color: #e8d9b0;
+
+    border: 1px solid #3d321b;
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+
+    resize: none;
+    outline: none;
+}
+.servicos textarea::placeholder {
+    color: #666666;
+}
+.servicos textarea:focus {
+    border-color: #c9a33a;
+}
+.servico.selecionado {
+    background-color: #c9a33a;
+    color: #111111;
+    border-color: #c9a33a;
+}
+
+.servico.selecionado strong {
+    color: #111111;
+}
+
+.servico.selecionado small {
+    color: #3d321b;
 }
