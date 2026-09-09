@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lanny Cabeleleira</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+</head>
+
+<body>
+
+    <main>
+
+        <section class="conteudo">
+
+            <p class="boas-vindas"> BEM-VINDA </p>
+
+            <h1 class="nome">Lanny</h1>
+
+            <h2 class="profissao">CABELELEIRA</h2>
+
+            <div class="decoracao">
+                ────── ◆ ──────
+            </div>
+
+            <p class="subtitulo">AGENDE SEU HORÁRIO</p>
+
+            <div class="formulario">
+
+                <p class="titulo-formulario">Insira suas informações</p>
+
+                <form method='POST'>
+                        {% csrf_token %}
+                    <input type="text" name="nome" placeholder="Nome" required>
+
+                    <input type="tel" name="telefone" placeholder="Telefone" required>
+
+                    <button type="submit">
+                        ENTRAR
+                    </button>
+
+                </form>
+
+            </div>
+
+            <a href="#" class="acesso-cabeleleira">
+                Acesso da cabeleireira →
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
