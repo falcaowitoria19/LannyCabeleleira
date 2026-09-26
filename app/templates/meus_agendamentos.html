@@ -14,6 +14,13 @@
 <body>
 
     <h1>Meus Agendamentos</h1>
-
+    {% for agendamento in agendamentos %}
+    <div>
+        <h2>{{agendamento.servico.nome}}</h2>
+        <p>Data: {{agendamento.data}}</p>
+        <p>Horário: {{agendamento.hora}}</p>
+        <p>Status: {{agendamento.status}}</p>
+    </div>
+   {% endfor %}
 </body>
 </html>

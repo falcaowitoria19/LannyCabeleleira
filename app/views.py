@@ -26,7 +26,13 @@ def agendamentos(request):
             data=data,
             hora=hora
         )
-        
+
     return render(request,'agendamentos.html',{"servicos":servicos})
 def meus_agendamentos(request):
-    return render(request,'meus_agendamentos.html')
+    cliente_id=request.session["cliente_id"]
+    agendamentos=Agendamento.objects.filter(
+        cliente_id=cliente_id
+    )
+    return render(request,'meus_agendamentos.html',{
+        "agendamentos":agendamentos
+    })

@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: #080808;
+    color: #e8d9b0;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+}
+h1{
+    text-align: center;
+    margin-bottom: 35px;
+    color: #c9a33a;
+    font-size: 32px;
+}
+body>div{
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    padding: 25px;
+    background-color:#111111 ;
+    border: 1px solid #3d321b;
+    border-radius: 12px;
+}
+body > div h2 {
+    color: #c9a33a;
+    margin-bottom: 15px;
+}
+body >div p{
+    margin: 8px 0;
+    color: #e8d9b0;
+}
