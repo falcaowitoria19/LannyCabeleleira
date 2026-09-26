@@ -14,6 +14,14 @@ def cliente(request):
     return render(request,'app/cliente.html')
 def agendamentos(request):
     servicos=Servico.objects.all()
+    if request.method == "POST":
+        servico_id=request.POST["servico"]
+        data= request.POST["data"]
+        hora=request.POST["hora"]
+
+        print("Serviço:",servico_id)
+        print("Data:",data)
+        print("Hora:",hora)
     return render(request,'agendamentos.html',{"servicos":servicos})
 def meus_agendamentos(request):
     return render(request,'meus_agendamentos.html')

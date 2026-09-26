@@ -61,15 +61,19 @@
             </section>
 
 
-            <!-- HORÁRIOS -->
+            
 
             <section class="horarios">
 
                 <h2>HORÁRIOS DISPONÍVEIS</h2>
 
                 <p>Selecione uma data no calendário →</p>
-
-                <div class="horarios-grid">
+                <form method="POST" id="form-agendamento">
+                   {% csrf_token %}
+                   <input type="hidden" name="servico" id="servico">
+                   <input type="hidden" name="data" id="data">
+                   <input type="hidden" name="hora" id="hora">
+                 <div class="horarios-grid">
 
     <button type="button" data-hora="08:00">08:00</button>
 
@@ -102,14 +106,11 @@
                 </div>
 
 
-                <button class="confirmar">
-                    SELECIONE SERVIÇO, DATA E HORÁRIO
-                </button>
-
+                   <button type="submit" class="confirmar" id="confirmar">
+                      CONFIRMAR AGENDAMENTO
+                  </button>
+              </form>
             </section>
-
-
-            <!-- CALENDÁRIO -->
 
             <section class="calendario">
 

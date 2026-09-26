@@ -2,6 +2,11 @@ let servicoSelecionado = null;
 let dataSelecionada = null;
 let horaSelecionada = null;
 
+const inputServico = document.querySelector("#servico");
+const inputData = document.querySelector("#data");
+const inputHora = document.querySelector("#hora");
+
+
 const servicos = document.querySelectorAll(".servico");
 
 servicos.forEach(function(servico) {
@@ -17,6 +22,8 @@ servicos.forEach(function(servico) {
         const idServico = servico.dataset.id;
 
         servicoSelecionado = idServico;
+
+        inputServico.value = servicoSelecionado;
 
         console.log("Serviço escolhido:", servicoSelecionado);
     });
@@ -35,6 +42,7 @@ dias.forEach(function(dia) {
             dia.classList.remove("selecionado");
 
             dataSelecionada = null;
+            inputData.value = "";
 
             console.log("Dia desmarcado:", dia.textContent);
 
@@ -48,13 +56,19 @@ dias.forEach(function(dia) {
 
             dataSelecionada = dia.dataset.data;
 
+            inputData.value = dataSelecionada;
+
             console.log("Dia escolhido:", dataSelecionada);
         }
 
     });
 
 });
-const horarios = document.querySelectorAll(".horarios-grid button:not(.indisponivel)");
+
+
+const horarios = document.querySelectorAll(
+    ".horarios-grid button:not(.indisponivel)"
+);
 
 horarios.forEach(function(horario) {
 
@@ -67,6 +81,8 @@ horarios.forEach(function(horario) {
         horario.classList.add("selecionado");
 
         horaSelecionada = horario.dataset.hora;
+
+        inputHora.value = horaSelecionada;
 
         console.log("Horário escolhido:", horaSelecionada);
     });
