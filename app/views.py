@@ -19,9 +19,14 @@ def agendamentos(request):
         data= request.POST["data"]
         hora=request.POST["hora"]
 
-        print("Serviço:",servico_id)
-        print("Data:",data)
-        print("Hora:",hora)
+        cliente_id=request.session["cliente_id"]
+        Agendamento.objects.create(
+            servico_id=servico_id,
+            cliente_id=cliente_id,
+            data=data,
+            hora=hora
+        )
+        
     return render(request,'agendamentos.html',{"servicos":servicos})
 def meus_agendamentos(request):
     return render(request,'meus_agendamentos.html')
