@@ -34,6 +34,21 @@ header{
     color: #c9a33a;
     font-size: 16px;
 }
+.telefone-whatsapp{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #c9a33a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.icone-whatsapp{
+    width: 22px;
+    height: 22px;
+}
+.telefone-whatsapp:hover{
+    color:#e8d9b0 ;
+}
 .usuario{
     display: flex;
     flex-direction: column;
@@ -83,14 +98,13 @@ main h1{
     margin-bottom: 45px;
 
     font-family: Georgia,serif;
-    font-size: 42px;
+    font-size:clamp(36px,4vw,48px) ;
     color: #c9a33a;
 }
 main h1 span{
     color: #e8d9b0;
     font-style: italic;
 }
-.servicos h2,
 .horarios h2,
 .calendario h2{
     color: #c9a33a;
@@ -100,26 +114,37 @@ main h1 span{
 
     margin-bottom: 18px;
 }
-.servico{
+
+
+
+.servico {
     width: 100%;
-    min-height: 52px;
-    text-align: left;
-    font-family:  Arial, sans-serif;
-    cursor: pointer;
+    min-height: 58px;
     box-sizing: border-box;
     padding: 12px 16px;
     margin-bottom: 10px;
-    background-color: #111111;
-    color: white;
 
-    border: 1px solid #3d321b;
+    background-color: #111111;
+    color: #e8d9b0;
+
+    border: 1px solid #30291b;
     border-radius: 8px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    text-align: left;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+
+    transition: background-color 0.3s ease,border-color 0.3s ease;
 }
+.servico h2{
+    color: #c9a33a;
+}
+
+/* Nome e duração */
 .servico div {
     display: flex;
     flex-direction: column;
@@ -127,26 +152,52 @@ main h1 span{
 }
 
 .servico strong {
-    color: white;
-    font-size: 16px;
+    color: #e8d9b0;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .servico small {
-    color: #8f8f8f;
-    font-size: 13px;
+    color: #999999;
+    font-size: 12px;
 }
 
-.servico:hover{
-    background-color: #c9a33a;
-    color: #111111;
+
+.servico:hover {
+    background-color: #19170f;
+    border-color: #8c7029;
+    
 }
 
-.servico:hover strong {
-    color: #111111;
+
+
+.servico.selecionado {
+    background-color: #19170f;
+    border-color: #8c7029;
+    box-shadow: inset 3px 0 0 #c9a33a;
 }
 
-.servico:hover small {
-    color: #3d321b;
+.servico.selecionado strong {
+    color: #f2dfaa;
+}
+
+.servico.selecionado small {
+    color: #b8a77c;
+}
+
+
+.servico.selecionado:hover {
+    background-color: #211c10;
+    border-color: #c9a33a;
+}
+.servico textarea:focus{
+    background-color: #111111;
+    color: #e8d9b0;
+    border-color: #8c7029;
+}
+.servico textarea:-webkit-autofill{
+    -webkit-text-fill-color: #e8d9b0;
+    box-shadow: 0 0 0 1000px #111111 inset;
 }
 
 .horarios-grid{
@@ -286,41 +337,154 @@ main h1 span{
 .confirmar:hover{
     background-color: #e8d9b0;
 }
-.servicos textarea {
-    width: 100%;
-    height: 100px;
-    box-sizing: border-box;
 
+/* ===== CORREÇÃO DOS SERVIÇOS ===== */
+
+body main .conteudo .servicos button.servico {
+    background-color: #111111 !important;
+    color: #e8d9b0 !important;
+    border: 1px solid #30291b !important;
+    box-shadow: none;
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+body main .conteudo .servicos button.servico strong {
+    color: #e8d9b0 !important;
+}
+
+body main .conteudo .servicos button.servico small {
+    color: #999999 !important;
+}
+
+/* Ao passar o mouse */
+body main .conteudo .servicos button.servico:hover {
+    background-color: #19170f !important;
+    border-color: #8c7029 !important;
+}
+
+/* Serviço selecionado */
+body main .conteudo .servicos button.servico.selecionado {
+    background-color: #19170f !important;
+    border-color: #8c7029 !important;
+    box-shadow: inset 3px 0 0 #c9a33a !important;
+}
+
+/* ===== CORREÇÃO DA OBSERVAÇÃO ===== */
+
+body main .conteudo .servicos textarea {
+    display: block;
+    width: 100% !important;
+    min-height: 100px;
+    box-sizing: border-box;
     padding: 14px 16px;
 
-    background-color: #111111;
-    color: #e8d9b0;
-
-    border: 1px solid #3d321b;
+    background: #111111 !important;
+    color: #e8d9b0 !important;
+    border: 1px solid #30291b !important;
     border-radius: 8px;
 
     font-family: Arial, sans-serif;
-    font-size: 13px;
-
-    resize: none;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
     outline: none;
 }
-.servicos textarea::placeholder {
-    color: #666666;
+
+body main .conteudo .servicos textarea::placeholder {
+    color: #777777 !important;
+    opacity: 1;
 }
-.servicos textarea:focus {
-    border-color: #c9a33a;
+
+body main .conteudo .servicos textarea:focus {
+    border-color: #8c7029 !important;
+    background: #111111 !important;
+    color: #e8d9b0 !important;
 }
-.servico.selecionado {
+
+body main .conteudo .servicos h2 {
+    color: #c9a33a !important;
+}
+
+/* CABEÇALHO */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 28px;
+    border-bottom: 1px solid #3d321b;
+}
+
+/* WHATSAPP À ESQUERDA */
+header .whatsapp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+header .whatsapp > span {
+    color: #8f8f8f;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header .telefone-whatsapp {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: #c9a33a;
+    text-decoration: none;
+}
+
+header .telefone-whatsapp strong {
+    color: #c9a33a;
+    font-size: 20px;
+}
+
+header .icone-whatsapp {
+    display: block;
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+}
+
+/* USUÁRIO À DIREITA */
+header .usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+header .usuario span {
+    color: #e8d9b0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+header .usuario a {
+    text-decoration: none;
+    background-color: #111111;
+    color: #c9a33a;
+    border: 1px solid #3d321b;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+header .usuario a:hover {
     background-color: #c9a33a;
     color: #111111;
     border-color: #c9a33a;
 }
 
-.servico.selecionado strong {
-    color: #111111;
-}
-
-.servico.selecionado small {
-    color: #3d321b;
-}

@@ -1,35 +1,181 @@
-*{
-    margin: 0;
-    padding: 0;
+
+/* ===== CONFIGURAÇÕES GERAIS ===== */
+
+* {
     box-sizing: border-box;
 }
-body{
+
+body {
+    margin: 0;
     min-height: 100vh;
-    background: #080808;
+    padding: 48px 24px;
+
+    background: radial-gradient(
+        circle at top,
+        #1b170b 0%,
+        #0d0d0d 45%,
+        #080808 100%
+    );
+
     color: #e8d9b0;
-    font-family: Arial, sans-serif;
-    padding: 40px;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
-h1{
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+
+.pagina-agendamentos {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ===== CABEÇALHO ===== */
+
+.cabecalho {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 70px;
+}
+
+.marca {
+    margin: 0 0 16px;
     color: #c9a33a;
-    font-size: 32px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-family: Georgia,serif;
 }
-body>div{
-    width: 500px;
-    max-width: 100%;
-    margin: 0 auto 20px;
-    padding: 25px;
-    background-color:#111111 ;
-    border: 1px solid #3d321b;
-    border-radius: 12px;
-}
-body > div h2 {
-    color: #c9a33a;
-    margin-bottom: 15px;
-}
-body >div p{
-    margin: 8px 0;
+
+.cabecalho h1 {
+    margin: 0;
+
     color: #e8d9b0;
+    font-family: Georgia, serif;
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1.25;
+}
+
+.subtitulo {
+    margin: 14px 0 0;
+    color: #aaa69c;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* ===== LISTA DE AGENDAMENTOS ===== */
+
+.lista-agendamentos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ===== CARTÃO DE CADA AGENDAMENTO ===== */
+
+.card-agendamento {
+    padding: 26px;
+    background: linear-gradient(135deg, #171717, #11100d);
+    border: 1px solid #3d321b;
+    border-radius: 14px;
+
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.card-agendamento:hover {
+    background: #19170f;
+    border-color: #8c7029;
+    transform: translateY(-3px);
+}
+
+.card-agendamento h2 {
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+
+    color: #c9a33a;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: 600;
+
+    border-bottom: 1px solid #30291b;
+}
+
+.card-agendamento p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 12px 0;
+    color: #b8b3a8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.card-agendamento strong {
+    min-width: 70px;
+    color: #e8d9b0;
+    font-weight: 600;
+}
+
+/* ===== QUANDO NÃO EXISTEM AGENDAMENTOS ===== */
+
+.sem-agendamentos {
+    margin: 0;
+    padding: 42px 24px;
+
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #3d321b;
+    border-radius: 14px;
+
+    color: #aaa69c;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* ===== TELAS MENORES ===== */
+
+@media (max-width: 600px) {
+    body {
+        padding: 32px 18px;
+    }
+
+    .cabecalho {
+        margin-bottom: 30px;
+    }
+
+    .subtitulo {
+        font-size: 14px;
+    }
+
+    .card-agendamento {
+        padding: 17px;
+    }
+
+    .card-agendamento h2 {
+        font-size: 25px;
+    }
+}
+.titulo-lista{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    margin-top:  60px !important;
+}
+.titulo-lista .icone-agendamentos{
+    width: 25px;
+    height: 25px;
+    color: #c9a33a;
+    flex-shrink: 0;
+}
+.titulo-lista h2{
+    margin: 0;
+    color:#e8d9b0 ;
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
 }

@@ -6,21 +6,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meus Agendamentos</title>
+    <title>Meus Agendamentos | Lanny Cabeleleira</title>
 
     <link rel="stylesheet" href="{% static 'css/meus_agendamentos.css' %}">
 </head>
 
 <body>
+    <main class="pagina-agendamentos">
+        <header class="cabecalho">
+            <p class="marca">LANNY CABELELEIRA</p>
+            <h1>Meus Agendamentos</h1>
+            <p class="subtitulo">Seus momentos de cuidado, organizados em um só lugar.</p>
+        
+<div class="titulo-lista">
+    <svg
+        class="icone-agendamentos"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+        <rect x="3" y="5" width="18" height="16" rx="2"/>
+        <path d="M16 3v4M8 3v4M3 11h18"/>
+        <path d="m9 16 2 2 4-4"/>
+    </svg>
 
-    <h1>Meus Agendamentos</h1>
-    {% for agendamento in agendamentos %}
-    <div>
-        <h2>{{agendamento.servico.nome}}</h2>
-        <p>Data: {{agendamento.data}}</p>
-        <p>Horário: {{agendamento.hora}}</p>
-        <p>Status: {{agendamento.status}}</p>
-    </div>
-   {% endfor %}
+    <h2>Seus agendamentos</h2>
+</div>
+
+        <section class="lista-agendamentos">
+            {% for agendamento in agendamentos %}
+            <article class="card-agendamento">
+                <h2>{{agendamento.servico.nome}}</h2>
+                <p>
+                    <strong>Data:</strong>
+                    {{agendamento.data}}
+                </p>
+                <p>
+                    <strong>Horário:</strong>
+                    {{agendamento.hora}}
+                </p>
+                <p>
+                    <strong>Status:</strong>
+                    {{agendamento.status}}
+                </p>
+            </article>
+           {% empty %}
+           <p class="sem-agendamentos">Você ainda não possui agendamentos.</p>
+           {% endfor %}
+        </section>
+
+    </main>
 </body>
 </html>
