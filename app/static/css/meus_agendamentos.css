@@ -1,5 +1,5 @@
 
-/* ===== CONFIGURAÇÕES GERAIS ===== */
+
 
 * {
     box-sizing: border-box;
@@ -120,7 +120,7 @@ body {
     font-weight: 600;
 }
 
-/* ===== QUANDO NÃO EXISTEM AGENDAMENTOS ===== */
+
 
 .sem-agendamentos {
     margin: 0;
@@ -136,7 +136,7 @@ body {
     text-align: center;
 }
 
-/* ===== TELAS MENORES ===== */
+
 
 @media (max-width: 600px) {
     body {

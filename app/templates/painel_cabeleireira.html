@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel da Cabeleireira</title>
+</head>
+<body>
+    <header>
+        <h1>Lanny Cabeleleira</h1>
+        <p>Painel administrativo</p>
+    </header>
+
+    <main>
+        <h2>Agendamentos</h2>
+        <nav aria-label="Filtrar agendamentos">
+            <a href="?filtro=hoje"
+           {% if filtro == "hoje" %}aria-current="page"
+           {% endif %}>
+           Hoje
+            </a>
+            
+            <a href="?filtro-proximmos"
+            {% if filtro == "proximos" %}aria-current="page"{% endif %}>
+             Proximos
+            </a>
+
+            <a href="?filtro=todos"
+            {% if filtro == "todos" %}aria-current="page"{% endif %}>
+             Todos
+            </a>
+
+        </nav>
+        <p>
+            {% if filtro == "hoje" %}
+                Agendamentos de {{ hoje|date:"d/m/Y" }}
+            {% elif filtro == "proximos" %}
+                Agendamentos de hoje em diante
+            {% else %}
+                Histórico completo de agendamentos
+            {% endif %}
+        </p>
+        {% if agendamentos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Telefone</th>
+                    <th>Serviço</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for agendamento in agendamentos %}
+                <tr>
+                    <td>{{ agendamento.cliente.nome }}</td>
+                            <td>{{ agendamento.cliente.telefone }}</td>
+                            <td>{{ agendamento.servico.nome }}</td>
+                            <td>{{ agendamento.data|date:"d/m/Y" }}</td>
+                            <td>{{ agendamento.hora|time:"H:i" }}</td>
+                            <td>{{ agendamento.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Nenhum agendamento cadastrado ainda.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
