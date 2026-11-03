@@ -1,0 +1,162 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: radial-gradient(circle at top,#181306 0%,#0d0d0d 55%,#080808 100%);
+    color: #f2eee5 ;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* ==============================
+   CARD PRINCIPAL
+============================== */
+main{
+    width: 100%;
+    max-width: 520px;
+    padding: 35px;
+    background: linear-gradient(145deg,#15130f,#0b0b0b);
+    border: 1px solid  #51452a ;
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(0, 0,0, 0.5);
+}   
+/* ==============================
+   TÍTULO
+============================== */
+h1{
+    margin: 0 0 28px;
+    color: #c9a33a;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    text-align: center;
+}
+/* ==============================
+   MENSAGEM DE ERRO
+============================== */
+main > p{
+    padding: 12px;
+    color:#ffdfe2 ;
+    background-color: #493039;
+    border: 1px solid #80505a;
+    border-radius: 7px;
+    font-size: 14px;
+}
+/* ==============================
+   FORMULÁRIO
+============================== */
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+form label{
+    margin-top: 8px;
+    color:  #e8d9b0;
+    font-size: 14px;
+    font-weight: bold;
+}
+form select,form input{
+    width: 100%;
+    padding: 12px;
+
+    background-color:#17140e;
+    color: #f2eee5;
+
+    border: 1px solid #51452a;
+    border-radius: 7px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+    transition: 0.2s ease;
+}
+/* Efeito ao selecionar os campos */
+form select:focus, form input:focus{
+    border-color: #c9a33a;
+    box-shadow: 0 0 0 3px rgba(201, 163,58, 0.12);
+}
+/* Remove as quebras antigas do HTML */
+form br {
+    display: none;
+}
+/* ==============================
+   BOTÃO SALVAR
+============================== */
+form button{
+    margin-top: 18px;
+    padding: 13px;
+
+    background: #b8954a;
+    color: #111111;
+
+    border:none;
+    border-radius: 7px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition:  0.25s ease;
+}
+form button:hover{
+    background:  #d2b875;
+    transform: translateY(-2px);
+    box-shadow:0 5px 15px rgba(201, 163, 58, 0.15) ;
+}
+/* ==============================
+   LINK VOLTAR
+============================== */
+main > p:last-child {
+    margin-top: 24px;
+    margin-bottom: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
+main > p:last-child a {
+    color: #c9a33a;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+main > p:last-child a:hover {
+    color: #e8d9b0;
+    text-decoration: underline;
+}
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 500px) {
+    body {
+        padding: 16px;
+    }
+
+    main {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+/* Ícones dos campos de data e horário */
+
+form input[type="date"]::-webkit-calendar-picker-indicator,
+form input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(0.92);
+    cursor: pointer;
+}
+
+

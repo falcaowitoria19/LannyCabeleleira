@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel da Cabeleireira</title>
+    <link rel="stylesheet" href="{% static 'css/painel.css' %}">
 </head>
 <body>
     <header>
@@ -13,16 +14,17 @@
         <p>Painel administrativo</p>
     </header>
 
-    <main>
-        <h2>Agendamentos</h2>
-        <nav aria-label="Filtrar agendamentos">
+    <main class="painel">
+        <section class="lista-agendamentos">
+          <h2>Agendamentos</h2>
+            <nav aria-label="Filtrar agendamentos">
             <a href="?filtro=hoje"
-           {% if filtro == "hoje" %}aria-current="page"
+            {% if filtro == "hoje" %}aria-current="page"
            {% endif %}>
            Hoje
             </a>
             
-            <a href="?filtro-proximmos"
+            <a href="?filtro=proximos"
             {% if filtro == "proximos" %}aria-current="page"{% endif %}>
              Proximos
             </a>
@@ -32,8 +34,8 @@
              Todos
             </a>
 
-        </nav>
-        <p>
+         </nav>
+         <p>
             {% if filtro == "hoje" %}
                 Agendamentos de {{ hoje|date:"d/m/Y" }}
             {% elif filtro == "proximos" %}
@@ -41,9 +43,9 @@
             {% else %}
                 Histórico completo de agendamentos
             {% endif %}
-        </p>
-        {% if agendamentos %}
-        <table>
+         </p>
+         {% if agendamentos %}
+         <table>
             <thead>
                 <tr>
                     <th>Cliente</th>
@@ -52,6 +54,7 @@
                     <th>Data</th>
                     <th>Horário</th>
                     <th>Status</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -63,14 +66,111 @@
                             <td>{{ agendamento.servico.nome }}</td>
                             <td>{{ agendamento.data|date:"d/m/Y" }}</td>
                             <td>{{ agendamento.hora|time:"H:i" }}</td>
-                            <td>{{ agendamento.status }}</td>
+                            <td>
+                            <span class="status-agendamento status-{{ agendamento.status }}">
+                                {{ agendamento.status }}
+                            </span>
+                        </td>
+                            
+                             <td>
+                                {% if agendamento.status != "cancelado" %}
+
+                                    <a  class="botao-acao botao-editar"href="{% url 'editar_agendamento' agendamento.id %}">
+                                        Editar
+                                    </a>
+
+                                    {% if agendamento.status == "agendado" %}
+                                        <form method="POST"
+                                            action="{% url 'concluir_agendamento' agendamento.id %}"
+                                            onsubmit="return confirm('Confirmar que este atendimento foi concluído?');">
+                                            {% csrf_token %}
+                                            <button type="submit" class="botao-concluir">Marcar como concluído</button>
+                                        </form>
+                                    {% endif %}
+
+                                    <form method="POST"
+                                        action="{% url 'cancelar_agendamento' agendamento.id %}"
+                                        onsubmit="return confirm('Tem certeza que deseja cancelar esse agendamento?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="botao-cancelar">Cancelar</button>
+                                    </form>
+
+                               
+                                {% endif %}
+                            </td>
+                            
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>
-        {% else %}
+          </table>
+         {% else %}
             <p>Nenhum agendamento cadastrado ainda.</p>
-        {% endif %}
+         {% endif %}
+        </section>
+        <aside class="calendario">
+            <div class="cabecalho-calendario">
+                <div>
+                    <h2>Calendário do mês</h2>
+                    <p>Selecione um dia pra filtrar os atendimentos</p>
+                </div>
+                <a  class="botaop-hoje" href="?"filtro=hoje>Hoje</a>
+            </div>
+            <div class="navegacao-mes"> 
+                {% if mes_anterior %}
+                <a href="?mes={{mes_anterior.month}}&ano={{mes_anterior.year}}" aria-label="Mês anterior">&lsaquo;</a>
+                {% else %}
+                <span>&laquo;</span>
+                {% endif %}
+                <h3>{{nome_mes}} {{ano}}</h3>
+
+                {% if mes_seguinte %}
+                    <a href="?mes={{ mes_seguinte.month }}&ano={{ mes_seguinte.year }}"aria-label="Próximo mês">&rsaquo;</a>
+                    {% else %}
+                    <span>&rsaquo;</span>
+                {% endif %}
+            </div>
+            <div class="grade-calendario">
+    {% for nome_dia in nomes_dias %}
+        <div class="nome-dia">{{ nome_dia }}</div>
+    {% endfor %}
+
+    {% for semana in semanas %}
+        {% for dia in semana %}
+            <a
+                class="dia-calendario
+                    {% if not dia.mes_atual %} outro-mes{% endif %}
+                    {% if dia.hoje %} dia-hoje{% endif %}
+                    {% if dia.selecionado %} dia-selecionado{% endif %}"
+                href="?dia={{ dia.data|date:'Y-m-d' }}&mes={{ mes }}&ano={{ ano }}"
+                aria-label="{{ dia.data|date:'d/m/Y' }}"
+            >
+                <span>{{ dia.numero }}</span>
+
+                {% if dia.tem_agendamento %}
+                    <span class="marcadores">
+                        {% if "agendado" in dia.status_agendamentos %}
+                            <i class="marcador agendado"></i>
+                        {% endif %}
+                        {% if "concluido" in dia.status_agendamentos %}
+                            <i class="marcador concluido"></i>
+                        {% endif %}
+                        {% if "cancelado" in dia.status_agendamentos %}
+                            <i class="marcador cancelado"></i>
+                        {% endif %}
+                    </span>
+                {% endif %}
+            </a>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="legenda-calendario">
+    <span><i class="marcador agendado"></i> Agendado</span>
+    <span><i class="marcador concluido"></i> Concluído</span>
+    <span><i class="marcador cancelado"></i> Cancelado</span>
+</div>
+
+        </aside>
     </main>
 </body>
 </html>

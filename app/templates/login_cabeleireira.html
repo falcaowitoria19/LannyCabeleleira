@@ -1,33 +1,62 @@
+
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Da Cabeleleira</title>
+
+    <title>Acesso da Cabeleireira</title>
+
     <link rel="stylesheet" href="{% static 'css/login_cabeleleira.css' %}">
 </head>
+
 <body>
+
     <main class="login-container">
+
         <h1>Lanny Cabeleleira</h1>
-        <p>Área exclusiva da Cabeleleira</p>
+        <p>Área exclusiva da cabeleireira</p>
+
         <form method="POST">
             {% csrf_token %}
+
             {% if erro %}
-            <p class="erro">{{ erro }}</p>
+                <p class="erro">{{ erro }}</p>
             {% endif %}
-            
+
             <div class="campo">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu E-mail" autocomplete="email" required>
+
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="email"
+                    required
+                >
             </div>
 
             <div class="campo">
-                <label for="id_password">Senha</label>
-                <input type="password" name="senha" id="senha" placeholder="Digite sua Senha" autocomplete="current-password" required>
+                <label for="senha">Senha</label>
+
+                <input
+                    type="password"
+                    name="senha"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
             </div>
+
             <button type="submit">Entrar</button>
+
         </form>
+
     </main>
+
 </body>
 </html>

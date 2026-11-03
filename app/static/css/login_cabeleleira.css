@@ -1,0 +1,222 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: radial-gradient(
+        circle at center,
+        #1a1512 0%,
+        #0a0806 70%,
+        #000000 100%
+    );
+
+    color: #f2eee5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==============================
+   CARD DE LOGIN
+============================== */
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 40px 32px;
+
+    background: linear-gradient(
+        145deg,
+        #15130f,
+        #0b0b0b
+    );
+
+    border: 1px solid #51452a;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ==============================
+   TÍTULO
+============================== */
+
+.login-container h1 {
+    margin: 0 0 10px;
+
+    color: #c9a33a;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+
+    text-align: center;
+}
+
+.login-container > p {
+    margin-bottom: 30px;
+
+    color: #b8aa8a;
+    font-size: 14px;
+
+    text-align: center;
+}
+
+/* ==============================
+   CAMPOS DO FORMULÁRIO
+============================== */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.campo label {
+    color: #e8d9b0;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 14px;
+
+    background-color: #17140e;
+    color: #f2eee5;
+
+    border: 1px solid #51452a;
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+/* Quando o usuário seleciona o campo */
+
+.campo input:focus {
+    border-color: #c9a33a;
+
+    box-shadow: 0 0 0 3px rgba(201, 163, 58, 0.15);
+}
+
+/* Texto dentro dos campos */
+
+.campo input::placeholder {
+    color: #a99b7a;
+    opacity: 1;
+}
+
+/* Corrige o preenchimento automático do navegador */
+
+.campo input:-webkit-autofill,
+.campo input:-webkit-autofill:hover,
+.campo input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #f2eee5 !important;
+
+    -webkit-box-shadow: 0 0 0 1000px #17140e inset !important;
+
+    caret-color: #f2eee5;
+}
+
+/* ==============================
+   BOTÃO ENTRAR
+============================== */
+
+form button {
+    width: 100%;
+    padding: 15px;
+
+    margin-top: 12px;
+
+    background-color: #c9a33a;
+    color: #111111;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+form button:hover {
+    background-color: #e8d9b0;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(201, 163, 58, 0.2);
+}
+
+/* ==============================
+   MENSAGEM DE ERRO
+============================== */
+
+.login-container .erro {
+    padding: 12px;
+
+    background-color: #493039;
+    color: #ffdfe2;
+
+    border: 1px solid #80505a;
+    border-radius: 7px;
+
+    font-size: 13px;
+    text-align: center;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 16px;
+    }
+
+    .login-container {
+        padding: 32px 22px;
+    }
+
+    .login-container h1 {
+        font-size: 25px;
+    }
+
+    .campo input {
+        padding: 13px;
+    }
+
+    form button {
+        padding: 14px;
+    }
+}

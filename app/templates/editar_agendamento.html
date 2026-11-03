@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar agendamentos</title>
+    <link rel="stylesheet" href="{% static 'css/editar_agendamento.css' %}">
+</head>
+<body>
+   <main>
+      <h1>Editar agendamento</h1>
+      {% if erro %}
+           <p>{{erro}}</p>
+      {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="servico">Serviço:</label>
+        <select name="servico" id="servico" required>
+            {% for servico in servicos %}
+                <option
+                    value="{{ servico.id }}"
+                    {% if servico.id == agendamento.servico.id %}selected{% endif %}
+                >
+                    {{ servico }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label for="data">Data:</label>
+        <input type="date" name="data" id="data" value="{{ agendamento.data|date:'Y-m-d' }}"required>
+        <br><br>
+        <label for="hora">Horário:</label>
+        <input type="time" name="hora" id="hora" value="{{ agendamento.hora|time:'H:i' }}"required>
+        <br><br>
+        <button type="submit">Salvar alterações</button>
+    </form>
+
+    <p>
+        <a href="{% url 'painel_cabeleireira' %}">
+            Voltar ao painel
+        </a>
+    </p>
+   </main>
+    
+</body>
+</html>

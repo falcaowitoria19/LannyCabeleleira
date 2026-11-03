@@ -132,3 +132,20 @@ form {
     color: #a99b7a;
 
 }
+
+/* Corrigir cores do preenchimento automático */
+
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    color: #f2eee5 !important;
+    -webkit-text-fill-color: #f2eee5 !important;
+
+    background-color: #17140e !important;
+
+    -webkit-box-shadow: 0 0 0 1000px #17140e inset !important;
+
+    caret-color: #f2eee5 !important;
+}

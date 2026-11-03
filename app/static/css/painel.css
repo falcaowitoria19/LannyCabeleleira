@@ -1,0 +1,523 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(
+        circle at top,
+        #181306 0%,
+        #0d0d0d 55%,
+        #080808 100%
+    );
+    color: #f2eee5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==============================
+   CABEÇALHO
+============================== */
+
+header {
+    padding: 24px 32px;
+    background: rgba(8, 8, 8, 0.95);
+    border-bottom: 1px solid #806b35;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+    margin: 0;
+    color: #c9a33a;
+    font-family: Georgia, serif;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    margin: 7px 0 0;
+    color: #bdb7aa;
+    font-size: 14px;
+}
+
+/* ==============================
+   ESTRUTURA DO PAINEL
+============================== */
+
+.painel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+    gap: 24px;
+    padding: 28px;
+    align-items: start;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.lista-agendamentos,
+.calendario {
+    min-width: 0;
+    padding: 24px;
+    background: linear-gradient(
+        145deg,
+        #15130f,
+        #0b0b0b
+    );
+    border: 1px solid #51452a;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.lista-agendamentos h2,
+.calendario h2 {
+    margin-top: 0;
+    color: #e8d9b0;
+    font-size: 21px;
+}
+
+/* ==============================
+   FILTROS
+============================== */
+
+.lista-agendamentos nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.lista-agendamentos nav a {
+    padding: 10px 18px;
+    color: #e8d9b0;
+    background: #211b10;
+    border: 1px solid #806b35;
+    border-radius: 7px;
+    border-color: #806b35;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+
+.lista-agendamentos nav a:hover {
+    background: #806b35;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.lista-agendamentos nav a[aria-current="page"] {
+    background: #b8954a;
+    color: #111111;
+    border-color:  #b8954a;
+}
+
+.lista-agendamentos > p {
+    margin: 15px 0;
+    color: #bdb7aa;
+    font-size: 14px;
+}
+
+/* ==============================
+   TABELA DE AGENDAMENTOS
+============================== */
+
+.lista-agendamentos {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px 10px;
+    text-align: left;
+    border-bottom: 1px solid #393326;
+    white-space: nowrap;
+}
+
+th {
+    color: #c9a33a;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td {
+    color: #f2eee5;
+    font-size: 13px;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: rgba(201, 163, 58, 0.07);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==============================
+   BOTÕES DE AÇÃO
+============================== */
+
+td form {
+    display: inline-block;
+    margin: 3px;
+    vertical-align: middle;
+}
+
+td button,
+td a.botao-acao {
+    display: inline-block;
+    padding: 9px 12px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Editar */
+
+.botao-editar {
+    background: #b8954a;
+    color:  #111111;
+}
+
+.botao-editar:hover {
+    background:  #d2b875;
+    transform: translateY(-2px);
+}
+
+/* Concluir */
+
+.botao-concluir {
+    background:  #294b3b;;
+    color:  #e1f1e5;
+    border-color: #52765e;
+}
+
+.botao-concluir:hover {
+    background: #38664c;
+    transform: translateY(-2px);
+}
+
+/* Cancelar */
+
+.botao-cancelar {
+    background: #552a30;
+    color: #ffdfe2;
+    border-color: #8b414a;
+}
+
+.botao-cancelar:hover {
+    background: #77343d;
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   CALENDÁRIO
+============================== */
+
+.cabecalho-calendario,
+.navegacao-mes,
+.legenda-calendario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.cabecalho-calendario h2,
+.cabecalho-calendario p {
+    margin: 0 0 8px;
+}
+
+.cabecalho-calendario p,
+.resumo-dia p {
+    color: #bdb7aa;
+    font-size: 13px;
+}
+
+.botaop-hoje {
+    padding: 8px 13px;
+    color: #e8d9b0;
+    background-color: #211b10;
+    border: 1px solid #806b35;
+     border-color: #806b35;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.botaop-hoje:hover {
+    background: #b8954a;
+    color: #111111;
+}
+
+.navegacao-mes {
+    margin: 24px 0 16px;
+}
+
+.navegacao-mes h3 {
+    margin: 0;
+    color: #e8d9b0;
+    text-transform: capitalize;
+    font-size: 17px;
+}
+
+.navegacao-mes a,
+.navegacao-mes span {
+    color: #c9a33a;
+    font-size: 27px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.navegacao-mes a:hover {
+    color: #ffffff;
+}
+
+/* ==============================
+   GRADE DO CALENDÁRIO
+============================== */
+
+.grade-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.nome-dia {
+    padding: 9px 0;
+    color: #c9a33a;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.dia-calendario {
+    min-height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #f2eee5;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.dia-calendario:hover {
+    background: rgba(201, 163, 58, 0.12);
+    border-color: #806b35;
+}
+
+.dia-hoje {
+    border-color: #c9a33a;
+}
+
+.dia-selecionado {
+    background: #c9a33a;
+    color: #111111;
+    font-weight: bold;
+}
+
+.dia-selecionado:hover {
+    background: #e0bb59;
+    color: #111111;
+}
+
+.outro-mes {
+    color: #686158;
+}
+
+/* ==============================
+   MARCADORES DO CALENDÁRIO
+============================== */
+
+.marcadores {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    min-height: 6px;
+}
+
+.marcador {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.marcador.agendado {
+    background: #c9a33a;
+}
+
+.marcador.concluido {
+    background: #16a878;
+}
+
+.marcador.cancelado {
+    background: #d94a4a;
+}
+
+/* ==============================
+   LEGENDA
+============================== */
+
+.legenda-calendario {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #393326;
+    color: #bdb7aa;
+    font-size: 11px;
+}
+
+.legenda-calendario span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ==============================
+   RESUMO DO DIA
+============================== */
+
+.resumo-dia {
+    margin-top: 18px;
+    padding: 16px;
+    background: #17120e;
+    border: 1px solid #51452a;
+    border-radius: 9px;
+}
+
+.resumo-dia h3 {
+    margin-top: 0;
+    color: #e8d9b0;
+}
+
+.resumo-dia a {
+    color: #c9a33a;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.resumo-dia a:hover {
+    color: #ffffff;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 1000px) {
+    .painel {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .painel {
+        padding: 12px;
+        gap: 16px;
+    }
+
+    .lista-agendamentos,
+    .calendario {
+        padding: 16px;
+    }
+
+    .lista-agendamentos h2,
+    .calendario h2 {
+        font-size: 19px;
+    }
+
+    .lista-agendamentos nav a {
+        padding: 9px 13px;
+    }
+
+    td form {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .dia-calendario {
+        min-height: 40px;
+        font-size: 12px;
+    }
+
+    .grade-calendario {
+        gap: 2px;
+    }
+
+    .nome-dia {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .cabecalho-calendario {
+        flex-wrap: wrap;
+    }
+
+    .dia-calendario {
+        min-height: 35px;
+    }
+}
+/* Etiquetas de status */
+
+.status-agendamento {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.status-agendado {
+    background: #211b10;
+    color: #e8d9b0;
+    border: 1px solid #806b35;
+}
+
+.status-concluido {
+    background: #294b3b;
+    color: #e1f1e5;
+    border: 1px solid #52765e;
+}
+
+.status-cancelado {
+    background: #493039;
+    color: #f5dfe3;
+    border: 1px solid #80505a;
+}

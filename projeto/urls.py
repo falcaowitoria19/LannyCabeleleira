@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from app.views import cliente,inicio,agendamentos,meus_agendamentos,login_cabeleireira,painel_cabeleireira
+from app.views import cliente,inicio,agendamentos,meus_agendamentos,login_cabeleireira,painel_cabeleireira,cancelar_agendamento,concluir_agendamento,editar_agendamento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +25,11 @@ urlpatterns = [
     path('',inicio,name='inicio'),
     path('agendamentos/',agendamentos,name='agendamentos'),
     path('meus-agendamentos/',meus_agendamentos,name='meus_agendamentos'),
-    path('acesso-cabeleireira/',login_cabeleireira,name='login_cabeleireira'),
-    path('painel-cabeleireira/',painel_cabeleireira,name='painel_cabeleireira')
+    path('login-cabeleireira/',login_cabeleireira,name='login_cabeleireira'),
+    path('painel-cabeleireira/',painel_cabeleireira,name='painel_cabeleireira'),
+    path('painel-cabeleireira/cancelar/<int:agendamento_id>/',cancelar_agendamento,name="cancelar_agendamento"),
+    path('painel-cabeleireira/concluir/<int:agendamento_id>/',concluir_agendamento,name="concluir_agendamento"),
+    path('painel-cabeleireira/editar/<int:agendamento_id>/',editar_agendamento,name="editar_agendamento")
 
+    
 ]
