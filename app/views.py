@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views.decorators.http import require_POST
 from.models import Cliente,Servico,Agendamento
+from . import horarios
+from django.http import JsonResponse
 from django.utils import timezone
 from datetime import date, time
 import calendar as calendario_python
@@ -20,22 +22,50 @@ def inicio(request):
     return render(request,'inicio.html')
 def cliente(request):
     return render(request,'app/cliente.html')
+def _buscar_servico(servico_id):
+    try:
+        return Servico.objects.filter(id=int(servico_id)).first()
+    except (TypeError, ValueError):
+        return None
+
 def agendamentos(request):
     servicos=Servico.objects.all()
+    erro=None
     if request.method == "POST":
-        servico_id=request.POST["servico"]
-        data= request.POST["data"]
-        hora=request.POST["hora"]
+        cliente_id=request.session.get("cliente_id")
+        if not cliente_id:
+            return redirect("inicio")
 
-        cliente_id=request.session["cliente_id"]
-        Agendamento.objects.create(
-            servico_id=servico_id,
-            cliente_id=cliente_id,
-            data=data,
-            hora=hora
-        )
+        servico=_buscar_servico(request.POST.get("servico"))
+        data=horarios.interpretar_data(request.POST.get("data"))
+        hora=horarios.interpretar_hora(request.POST.get("hora"))
 
-    return render(request,'agendamentos.html',{"servicos":servicos})
+        if servico is None:
+            erro="Selecione um serviço."
+        else:
+            # Mesma regra usada para montar a grade: o backend não confia no JS.
+            erro=horarios.validar(data,hora,servico)
+
+        if erro is None:
+            Agendamento.objects.create(
+                servico=servico,
+                cliente_id=cliente_id,
+                data=data,
+                hora=hora
+            )
+            return redirect("meus_agendamentos")
+
+    return render(request,'agendamentos.html',{"servicos":servicos,"erro":erro})
+
+def horarios_disponiveis(request):
+    """Devolve em JSON os horários do dia para o serviço escolhido."""
+    servico=_buscar_servico(request.GET.get("servico"))
+    data=horarios.interpretar_data(request.GET.get("data"))
+    if servico is None or data is None:
+        return JsonResponse({"erro":"Serviço ou data inválidos."},status=400)
+    if data < timezone.localdate():
+        return JsonResponse({"horarios":[],"mensagem":"Escolha uma data a partir de hoje."})
+    return JsonResponse({"horarios":horarios.listar_horarios(data,servico)})
 
 def meus_agendamentos(request):
     cliente_id=request.session["cliente_id"]
@@ -267,13 +297,17 @@ def editar_agendamento(request, agendamento_id):
                     "erro": "Data, horário ou serviço inválido.",
                 }
             )
-        conflito = Agendamento.objects.filter( data=nova_data, hora=novo_horario,status="agendado").exclude(id=agendamento.id).exists()
-        if conflito:
+        # A cabeleireira pode corrigir datas passadas; o resto da regra vale igual.
+        erro_horario = horarios.validar(
+            nova_data, novo_horario, servico,
+            ignorar_id=agendamento.id, bloquear_passado=False,
+        )
+        if erro_horario:
             return render(request,"editar_agendamento.html",
                 {
                     "agendamento": agendamento,
                     "servicos": servicos,
-                    "erro": "Esse horário já está ocupado.",
+                    "erro": erro_horario,
                 }
             )
         agendamento.servico = servico

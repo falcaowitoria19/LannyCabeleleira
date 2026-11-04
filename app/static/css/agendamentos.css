@@ -303,6 +303,22 @@ main h1 span{
 .dias button:hover {
     background-color: #3d321b;
 }
+.dias button:disabled {
+    color: #555555;
+    cursor: not-allowed;
+    background: none;
+}
+
+/* Avisos dentro da grade de horários e erro do formulário */
+.horarios-aviso {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #e8d9b0;
+}
+.erro-agendamento {
+    margin: 0 0 12px;
+    color: #e0836f;
+}
 .legenda{
     display: flex;
     justify-content: space-between;

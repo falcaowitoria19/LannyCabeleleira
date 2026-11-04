@@ -42,7 +42,6 @@
             <strong>(83) 987025184</strong>
         </a>
     </div>
-
     <!-- Usuário à direita -->
     <div class="usuario">
         <span>Olá, wiwi</span>
@@ -52,8 +51,6 @@
     </div>
 </header>
 
-
-
     <main>
 
         <h1>
@@ -62,7 +59,6 @@
 
 
         <div class="conteudo">
-
             <!-- SERVIÇOS -->
             <section class="servicos">
                 <h2>SERVIÇOS</h2>
@@ -75,18 +71,12 @@
                
                 </button>
                 {% endfor %}
-    
-
                 <!-- OBSERVAÇÃO -->
-
                 <h2>OBSERVAÇÃO</h2>
 
                 <textarea placeholder="Alguma informação adicional..."></textarea>
 
             </section>
-
-
-            
 
             <section class="horarios">
 
@@ -98,31 +88,12 @@
                    <input type="hidden" name="servico" id="servico">
                    <input type="hidden" name="data" id="data">
                    <input type="hidden" name="hora" id="hora">
-                 <div class="horarios-grid">
-
-    <button type="button" data-hora="08:00">08:00</button>
-
-    <button type="button" class="indisponivel" disabled data-hora="09:00">
-        09:00
-    </button>
-
-    <button type="button" data-hora="10:00">10:00</button>
-
-    <button type="button" data-hora="11:00">11:00</button>
-
-    <button type="button" class="indisponivel" disabled data-hora="13:00">
-        13:00
-    </button>
-
-    <button type="button" data-hora="14:00">14:00</button>
-
-    <button type="button" data-hora="15:00">15:00</button>
-
-    <button type="button" class="indisponivel" disabled data-hora="16:00">
-        16:00
-    </button>
-    <button type="button" data-hora="17:00">17:00</button>
-</div>
+                 {% if erro %}
+                 <p class="erro-agendamento" role="alert">{{ erro }}</p>
+                 {% endif %}
+                 <div class="horarios-grid" data-url="{% url 'horarios_disponiveis' %}">
+                     <p class="horarios-aviso">Selecione um serviço e uma data.</p>
+                 </div>
 
                 <div class="legenda">
                     <span class="selecionado-legenda">● Selecionado</span>
@@ -155,8 +126,6 @@
         <div class="dias"></div>
     </div>
 </section>
-
     </main>
-
 </body>
 </html>

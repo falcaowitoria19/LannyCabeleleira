@@ -1,6 +1,7 @@
 from rest_framework import viewsets,status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from .. import horarios
 from ..models import Cliente,Servico,Agendamento
 from .serializers import ClienteSerializer,ServicoSerializer,AgendamentoSerializer,MeusAgendamentosSerializer
 class ClienteViewSet(viewsets.ModelViewSet):
@@ -38,16 +39,14 @@ class AgendamentoViewSet(viewsets.ModelViewSet):
                 status=404
             )
 
-        agendamento_existente = Agendamento.objects.filter(
-            data=data,
-            hora=hora
-        ).exists()
+        erro = horarios.validar(
+            horarios.interpretar_data(data),
+            horarios.interpretar_hora(hora),
+            servico
+        )
 
-        if agendamento_existente:
-            return Response(
-                {'erro': 'Esse horário já está ocupado.'},
-                status=400
-            )
+        if erro:
+            return Response({'erro': erro}, status=400)
 
         serializer = self.get_serializer(data=request.data)
 
@@ -67,46 +66,25 @@ class AgendamentoViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['GET'])
     def horarios_disponiveis(self, request):
 
-        data = request.query_params.get('data')
+        data = horarios.interpretar_data(request.query_params.get('data'))
+        servico_id = request.query_params.get('servico', '')
+        servico = (
+            Servico.objects.filter(id=servico_id).first()
+            if servico_id.isdigit() else None
+        )
 
-        if not data:
+        if data is None or servico is None:
             return Response(
-                {'erro': 'Informe a data.'},
+                {'erro': 'Informe a data (AAAA-MM-DD) e o serviço.'},
                 status=400
             )
 
-        agendamentos = Agendamento.objects.filter(
-            data=data,
-            status='agendado'
-        )
-
-        horarios_ocupados = [
-            agendamento.hora.strftime('%H:%M')
-            for agendamento in agendamentos
-        ]
-
-        horarios = [
-            '09:00',
-            '10:00',
-            '11:00',
-            '12:00',
-            '13:00',
-            '14:00',
-            '15:00',
-            '16:00',
-            '17:00',
-            '18:00'
-        ]
-
-        horarios_disponiveis = [
-            horario
-            for horario in horarios
-            if horario not in horarios_ocupados
-        ]
-
         return Response({
-            'data': data,
-            'horarios_disponiveis': horarios_disponiveis
+            'data': data.isoformat(),
+            'horarios_disponiveis': [
+                h['hora'] for h in horarios.listar_horarios(data, servico)
+                if h['disponivel']
+            ]
         })
 
     @action(detail=False, methods=['GET'])

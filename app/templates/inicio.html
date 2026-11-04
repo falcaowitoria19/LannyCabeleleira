@@ -34,7 +34,9 @@
             <div class="formulario">
 
                 <p class="titulo-formulario">Insira suas informações</p>
-
+                {% if erro %}
+                  <p class="mensagem-erro">{{ erro }}</p>
+                {% endif %}
                 <form method='POST'>
                         {% csrf_token %}
                     <input type="text" name="nome" placeholder="Nome" required>
