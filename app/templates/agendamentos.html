@@ -67,8 +67,20 @@
                     <div>
                     <strong>{{servico.nome}}</strong>
                     <small>{{servico.duracao}} min</small>
+                    <span class="preco-servico">
+                        {% if servico.preco_a_partir %}
+                            A partir de R$ {{servico.preco|floatformat:2}}
+                        {% else %}
+                            R$ {{servico.preco|floatformat:2}}
+                        {% endif %}
+                    </span>
+
+                    {% if servico.preco_a_partir %}
+                        <small class="aviso-preco">
+                           Preço a combinar pelo tamanho do cabelo.
+                        </small>
+                    {% endif %}
                    </div>
-               
                 </button>
                 {% endfor %}
                 <!-- OBSERVAÇÃO -->

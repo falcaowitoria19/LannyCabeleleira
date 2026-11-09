@@ -1,150 +1,187 @@
+/* ===== VARIÁVEIS ===== */
+:root {
+    --ouro: #c9a33a;
+    --ouro-claro: #e8d9b0;
+    --ouro-escuro: #8c7029;
+    --borda: #3d321b;
+    --fundo-botao: #111111;
+    --fundo-hover: #19170f;
+    --cinza: #8f8f8f;
+    --raio: 10px;
+    --transicao: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-
-    background: radial-gradient(
-        circle,
-        #181306 0%,
-        #0d0d0d 55%,
-        #080808 100%
-    );
-
+    background: radial-gradient(circle, #181306 0%, #0d0d0d 55%, #080808 100%);
     color: white;
-
     min-height: 100vh;
-
     font-family: Arial, sans-serif;
 }
-header{
+
+/* ===== CABEÇALHO ===== */
+header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 50px;
-    border-bottom: 1px solid #3d321b;
+    gap: 16px;
+    width: 100%;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--borda);
 }
-.whatsapp{
+
+header .whatsapp {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: flex-start;
+    gap: 8px;
 }
-.whatsapp span{
-    color: #8f8f8f;
-    font-size: 13px;
-}
-.whatsapp strong{
-    color: #c9a33a;
+
+header .whatsapp > span {
+    color: var(--cinza);
     font-size: 16px;
+    line-height: 1.5;
 }
-.telefone-whatsapp{
+
+header .telefone-whatsapp {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #c9a33a;
+    color: var(--ouro);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color var(--transicao), transform var(--transicao);
 }
-.icone-whatsapp{
-    width: 22px;
-    height: 22px;
+
+header .telefone-whatsapp strong {
+    color: inherit;
+    font-size: 20px;
 }
-.telefone-whatsapp:hover{
-    color:#e8d9b0 ;
+
+header .telefone-whatsapp:hover {
+    color: var(--ouro-claro);
+    transform: translateX(2px);
 }
-.usuario{
+
+header .icone-whatsapp {
+    display: block;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+}
+
+header .usuario {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+    margin-left: auto;
+    text-align: right;
 }
-.usuario span{
-    color: #e8d9b0;
-    font-size: 14px;
+
+header .usuario span {
+    color: var(--ouro-claro);
+    font-size: 18px;
+    line-height: 1.5;
 }
-.usuario button{
-    background: none;
-    border: none;
-    color: #c9a33a;
-    font-size: 13px;
-    cursor: pointer;
-}
-.usuario a{
+
+/* Botões do usuário (Sair / Entrar / Meus agendamentos) */
+.usuario a,
+.usuario button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     text-decoration: none;
-    background-color: #111111;
-    color: #c9a33a;
-    border: 1px solid #3d321b;
-    border-radius:8px ;
-    padding: 10px 16px;
-    font-size: 13px;
+    background: linear-gradient(180deg, #161616, #0e0e0e);
+    color: var(--ouro);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background var(--transicao), color var(--transicao),
+                border-color var(--transicao), transform var(--transicao),
+                box-shadow var(--transicao);
 }
-.usuario a:hover{
-    background-color: #c9a33a;
+
+.usuario a:hover,
+.usuario button:hover {
+    background: linear-gradient(180deg, #d8b24a, var(--ouro));
     color: #111111;
-    border-color: #c9a33a;
+    border-color: var(--ouro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(201, 163, 58, 0.25);
 }
-.conteudo{
-    width: 1100px;
-    margin: 0 auto;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:40px;
-    align-items: start;
+.usuario a:active,
+.usuario button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
-main h1{
+
+/* ===== TÍTULO ===== */
+main h1 {
     text-align: center;
-
-    margin-top: 50px;
-    margin-bottom: 45px;
-
-    font-family: Georgia,serif;
-    font-size:clamp(36px,4vw,48px) ;
-    color: #c9a33a;
+    margin: 50px 16px 45px;
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 48px);
+    color: var(--ouro);
 }
-main h1 span{
-    color: #e8d9b0;
+
+main h1 span {
+    color: var(--ouro-claro);
     font-style: italic;
 }
-.horarios h2,
-.calendario h2{
-    color: #c9a33a;
 
+/* ===== LAYOUT ===== */
+.conteudo {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.servicos h2,
+.horarios h2,
+.calendario h2 {
+    color: var(--ouro);
     font-size: 20px;
     letter-spacing: 2px;
-
     margin-bottom: 18px;
 }
 
-
-
+/* ===== SERVIÇOS ===== */
 .servico {
     width: 100%;
-    min-height: 58px;
-    box-sizing: border-box;
+    min-height: 62px;
     padding: 12px 16px;
     margin-bottom: 10px;
-
-    background-color: #111111;
-    color: #e8d9b0;
-
+    background: var(--fundo-botao);
+    color: var(--ouro-claro);
     border: 1px solid #30291b;
-    border-radius: 8px;
-
+    border-radius: var(--raio);
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    gap: 12px;
     text-align: left;
     font-family: Arial, sans-serif;
     cursor: pointer;
-
-    transition: background-color 0.3s ease,border-color 0.3s ease;
-}
-.servico h2{
-    color: #c9a33a;
+    transition: background-color var(--transicao), border-color var(--transicao),
+                transform var(--transicao), box-shadow var(--transicao);
 }
 
-/* Nome e duração */
 .servico div {
     display: flex;
     flex-direction: column;
@@ -152,7 +189,7 @@ main h1 span{
 }
 
 .servico strong {
-    color: #e8d9b0;
+    color: var(--ouro-claro);
     font-size: 15px;
     font-weight: 600;
 }
@@ -162,19 +199,21 @@ main h1 span{
     font-size: 12px;
 }
 
-
 .servico:hover {
-    background-color: #19170f;
-    border-color: #8c7029;
-    
+    background-color: var(--fundo-hover);
+    border-color: var(--ouro-escuro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
-
+.servico:active {
+    transform: translateY(0);
+}
 
 .servico.selecionado {
-    background-color: #19170f;
-    border-color: #8c7029;
-    box-shadow: inset 3px 0 0 #c9a33a;
+    background: linear-gradient(90deg, rgba(201, 163, 58, 0.12), var(--fundo-hover));
+    border-color: var(--ouro-escuro);
+    box-shadow: inset 4px 0 0 var(--ouro), 0 0 0 1px rgba(201, 163, 58, 0.15);
 }
 
 .servico.selecionado strong {
@@ -185,97 +224,167 @@ main h1 span{
     color: #b8a77c;
 }
 
-
 .servico.selecionado:hover {
     background-color: #211c10;
-    border-color: #c9a33a;
-}
-.servico textarea:focus{
-    background-color: #111111;
-    color: #e8d9b0;
-    border-color: #8c7029;
-}
-.servico textarea:-webkit-autofill{
-    -webkit-text-fill-color: #e8d9b0;
-    box-shadow: 0 0 0 1000px #111111 inset;
+    border-color: var(--ouro);
 }
 
-.horarios-grid{
+/* Observação */
+.servicos textarea {
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    padding: 14px 16px;
+    background: var(--fundo-botao);
+    color: var(--ouro-claro);
+    border: 1px solid #30291b;
+    border-radius: var(--raio);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.servicos textarea::placeholder {
+    color: #777777;
+    opacity: 1;
+}
+
+.servicos textarea:focus {
+    border-color: var(--ouro-escuro);
+    box-shadow: 0 0 0 3px rgba(201, 163, 58, 0.15);
+}
+
+.servicos textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--ouro-claro);
+    box-shadow: 0 0 0 1000px var(--fundo-botao) inset;
+}
+
+/* ===== HORÁRIOS ===== */
+.horarios-grid {
     display: grid;
-    grid-template-columns:repeat(3, 1fr) ;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
 }
-.horarios-grid button{
+
+.horarios-grid button {
     width: 100%;
     height: 52px;
-    background-color: #111111;
     padding: 0;
-
-    color: #e8d9b0;
-
-    border: 1px solid #3d321b;
-    border-radius: 8px;
-    cursor: pointer;
+    background: var(--fundo-botao);
+    color: var(--ouro-claro);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
     font-size: 17px;
-    transition: 0.2s;
-}
-
-    .horarios-grid button.selecionado {
-    background-color: #c9a33a !important;
-    color: #000 !important;
-    border: 2px solid #ffffff !important;
-}
-
-.horarios-grid button.indisponivel{
-    color:#555555;
-    border-color: #222222;
-    background-color:  #0c0c0c;
-    cursor: not-allowed;
-}
-.horarios-grid button:hover{
-    background-color: #c9a33a;
-    color: #111111;
     cursor: pointer;
-    border-color: #c9a33a;
+    transition: background-color var(--transicao), color var(--transicao),
+                border-color var(--transicao), transform var(--transicao),
+                box-shadow var(--transicao);
 }
-.horarios-grid button.indisponivel:hover{
-    background-color: #0c0c0c;
-    color: #444444;
+
+.horarios-grid button:hover {
+    background: var(--ouro);
+    color: #111111;
+    border-color: var(--ouro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(201, 163, 58, 0.25);
+}
+
+.horarios-grid button:active {
+    transform: translateY(0);
+}
+
+.horarios-grid button.selecionado {
+    background: var(--ouro);
+    color: #000;
+    border: 2px solid #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 14px rgba(201, 163, 58, 0.45);
+}
+
+.horarios-grid button.indisponivel,
+.horarios-grid button.indisponivel:hover {
+    color: #555555;
     border-color: #222222;
+    background: #0c0c0c;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    text-decoration: line-through;
 }
-.calendario-caixa{
-    background-color: #111111;
-    border: 1px solid #3d321b;
+
+.horarios-aviso {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--ouro-claro);
+}
+
+.erro-agendamento {
+    margin: 0 0 12px;
+    color: #e0836f;
+}
+
+/* ===== CALENDÁRIO ===== */
+.calendario-caixa {
+    background-color: var(--fundo-botao);
+    border: 1px solid var(--borda);
     border-radius: 12px;
-    padding: 25px;
+    padding: 30px;
 }
-.mes{
+
+.mes h3,
+.mes span,
+.mes strong {
+    font-size: 20px;
+}
+
+.mes {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-.mes button{
-    background: none;
-    border: none;
-    color: #c9a33a;
-    font-size: 28px;
-    cursor: pointer;
 
+.mes button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: var(--ouro);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color var(--transicao), border-color var(--transicao),
+                transform var(--transicao);
 }
-.dias-semana{
+
+.mes button:hover {
+    background-color: var(--borda);
+    border-color: var(--ouro-escuro);
+    transform: scale(1.08);
+}
+
+.dias-semana {
     display: grid;
-    grid-template-columns: repeat(7 ,1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 8px;
     margin-bottom: 10px;
 }
-.dias-semana span{
+
+.dias-semana span {
     text-align: center;
-    color: #8f8f8f;
-    font-size: 13px;
-    padding: 10px 0;
+    color: var(--cinza);
+    font-size: 14px;
+    padding: 11px 0;
 }
-.dias{
+
+.dias {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
@@ -285,222 +394,227 @@ main h1 span{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px;
-    height: 45px;
+    width: 100%;
+    max-width: 54px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
     border-radius: 50%;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     background: none;
-    border: none;
+    border: 1px solid transparent;
     color: white;
-}
-
-.dias button.selecionado {
-    background-color: #c9a33a !important;
-    color: #111111 !important;
+    transition: background-color var(--transicao), border-color var(--transicao),
+                transform var(--transicao);
 }
 
 .dias button:hover {
-    background-color: #3d321b;
+    background-color: var(--borda);
+    border-color: var(--ouro-escuro);
+    transform: scale(1.1);
 }
-.dias button:disabled {
+
+.dias button.selecionado {
+    background-color: var(--ouro);
+    color: #111111;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(201, 163, 58, 0.5);
+}
+
+.dias button:disabled,
+.dias button:disabled:hover {
     color: #555555;
     cursor: not-allowed;
     background: none;
+    border-color: transparent;
+    transform: none;
 }
 
-/* Avisos dentro da grade de horários e erro do formulário */
-.horarios-aviso {
-    grid-column: 1 / -1;
-    margin: 0;
-    color: #e8d9b0;
-}
-.erro-agendamento {
-    margin: 0 0 12px;
-    color: #e0836f;
-}
-.legenda{
+.legenda {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 8px;
     margin-top: 18px;
     font-size: 15px;
-    color: #8f8f8f;
+    color: var(--cinza);
 }
-.selecionado-legenda{
-    color: #c9a33a;
-}
-.disponivel-legenda{
-    color: #e8d9b0;
-}
-.ocupado-legenda{
-    color: #8f8f8f;
-}
-.confirmar{
+
+.selecionado-legenda { color: var(--ouro); }
+.disponivel-legenda { color: var(--ouro-claro); }
+.ocupado-legenda { color: var(--cinza); }
+
+/* ===== BOTÃO CONFIRMAR ===== */
+.confirmar {
     width: 100%;
-    height: 48px;
+    min-height: 50px;
     margin-top: 18px;
-    padding: 0 10px;
-    background-color: #c9a33a;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, #d8b24a, var(--ouro));
     color: #111111;
     border: none;
-    border-radius: 8px;
-    font-size: 11px;
+    border-radius: var(--raio);
+    font-size: 12px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: 0.2s;
-}
-.confirmar:hover{
-    background-color: #e8d9b0;
+    box-shadow: 0 4px 14px rgba(201, 163, 58, 0.25);
+    transition: background var(--transicao), transform var(--transicao),
+                box-shadow var(--transicao);
 }
 
-/* ===== CORREÇÃO DOS SERVIÇOS ===== */
+.confirmar:hover {
+    background: linear-gradient(180deg, #f0e2b8, var(--ouro-claro));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201, 163, 58, 0.4);
+}
 
-body main .conteudo .servicos button.servico {
-    background-color: #111111 !important;
-    color: #e8d9b0 !important;
-    border: 1px solid #30291b !important;
+.confirmar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(201, 163, 58, 0.3);
+}
+
+.confirmar:disabled {
+    background: #2a2415;
+    color: #6b6248;
+    cursor: not-allowed;
+    transform: none;
     box-shadow: none;
-    transition: background-color 0.3s ease,
-                border-color 0.3s ease;
 }
 
-body main .conteudo .servicos button.servico strong {
-    color: #e8d9b0 !important;
+/* ===== FOCO PARA TECLADO (acessibilidade) ===== */
+.servico:focus-visible,
+.horarios-grid button:focus-visible,
+.dias button:focus-visible,
+.mes button:focus-visible,
+.confirmar:focus-visible,
+.usuario a:focus-visible,
+.usuario button:focus-visible {
+    outline: 2px solid var(--ouro-claro);
+    outline-offset: 3px;
 }
 
-body main .conteudo .servicos button.servico small {
-    color: #999999 !important;
+/* ===== RESPONSIVO ===== */
+
+/* Tablet: serviços em cima, horários e calendário lado a lado */
+@media (max-width: 1000px) {
+    .conteudo {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .servicos {
+        grid-column: 1 / -1;
+    }
 }
 
-/* Ao passar o mouse */
-body main .conteudo .servicos button.servico:hover {
-    background-color: #19170f !important;
-    border-color: #8c7029 !important;
+/* Celular: tudo em uma coluna */
+@media (max-width: 700px) {
+    header {
+        padding: 16px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    header .whatsapp {
+        align-items: center;
+    }
+
+    header .usuario {
+        margin: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    header .usuario span {
+        font-size: 16px;
+    }
+
+    .conteudo {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 0 16px 32px;
+    }
+
+    .calendario-caixa {
+        padding: 16px;
+    }
+
+    .dias,
+    .dias-semana {
+        gap: 4px;
+    }
+
+    .horarios-grid {
+        gap: 10px;
+    }
+
+    .horarios-grid button {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .legenda {
+        font-size: 13px;
+    }
+
+    .confirmar {
+        position: sticky;
+        bottom: 12px;
+        z-index: 10;
+        min-height: 54px;
+        font-size: 13px;
+    }
 }
 
-/* Serviço selecionado */
-body main .conteudo .servicos button.servico.selecionado {
-    background-color: #19170f !important;
-    border-color: #8c7029 !important;
-    box-shadow: inset 3px 0 0 #c9a33a !important;
+/* Celulares pequenos */
+@media (max-width: 400px) {
+    .horarios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dias button {
+        font-size: 14px;
+    }
+
+    header .telefone-whatsapp strong {
+        font-size: 17px;
+    }
 }
 
-/* ===== CORREÇÃO DA OBSERVAÇÃO ===== */
+/* Dispositivos touch: sem efeito de "levantar" preso após o toque */
+@media (hover: none) {
+    .servico:hover,
+    .horarios-grid button:hover,
+    .confirmar:hover,
+    .usuario a:hover,
+    .usuario button:hover,
+    .dias button:hover,
+    .mes button:hover {
+        transform: none;
+    }
+}
+/* ===== PREÇOS DOS SERVIÇOS ===== */
 
-body main .conteudo .servicos textarea {
-    display: block;
-    width: 100% !important;
-    min-height: 100px;
-    box-sizing: border-box;
-    padding: 14px 16px;
-
-    background: #111111 !important;
-    color: #e8d9b0 !important;
-    border: 1px solid #30291b !important;
-    border-radius: 8px;
-
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    resize: vertical;
-    outline: none;
+.servico .preco-servico{
+    color: var(--ouro);
+    font-size: 15px;
+    font-weight: bold;
+}
+.servico .aviso-preco {
+    color: var(--ouro-claro);
+    font-size: 11px;
+    line-height: 1.4;
+    font-style: italic;
 }
 
-body main .conteudo .servicos textarea::placeholder {
-    color: #777777 !important;
-    opacity: 1;
+/* Preços quando o serviço estiver selecionado */
+
+.servico.selecionado .preco-servico {
+    color: #f2dfaa;
 }
 
-body main .conteudo .servicos textarea:focus {
-    border-color: #8c7029 !important;
-    background: #111111 !important;
-    color: #e8d9b0 !important;
-}
-
-body main .conteudo .servicos h2 {
-    color: #c9a33a !important;
-}
-
-/* CABEÇALHO */
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px 28px;
-    border-bottom: 1px solid #3d321b;
-}
-
-/* WHATSAPP À ESQUERDA */
-header .whatsapp {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-header .whatsapp > span {
-    color: #8f8f8f;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-header .telefone-whatsapp {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    color: #c9a33a;
-    text-decoration: none;
-}
-
-header .telefone-whatsapp strong {
-    color: #c9a33a;
-    font-size: 20px;
-}
-
-header .icone-whatsapp {
-    display: block;
-    width: 28px;
-    height: 28px;
-    flex-basis: 28px;
-}
-
-/* USUÁRIO À DIREITA */
-header .usuario {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    margin-left: auto;
-    text-align: right;
-    flex-shrink: 0;
-}
-
-header .usuario span {
+.servico.selecionado .aviso-preco {
     color: #e8d9b0;
-    font-size: 18px;
-    line-height: 1.5;
 }
-
-header .usuario a {
-    text-decoration: none;
-    background-color: #111111;
-    color: #c9a33a;
-    border: 1px solid #3d321b;
-    border-radius: 8px;
-    padding: 12px 18px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-header .usuario a:hover {
-    background-color: #c9a33a;
-    color: #111111;
-    border-color: #c9a33a;
-}
-

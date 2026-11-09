@@ -7,6 +7,12 @@ class Cliente(models.Model):
 class Servico(models.Model):
     nome=models.CharField(max_length=50)
     duracao=models.PositiveIntegerField()
+    preco=models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        default=0
+    )
+    preco_a_partir=models.BooleanField(default=False)
 class Agendamento(models.Model):
     servico=models.ForeignKey(Servico,on_delete=models.CASCADE,related_name="agendamentos")
     cliente=models.ForeignKey(Cliente,on_delete=models.CASCADE,related_name="agendamentos")
